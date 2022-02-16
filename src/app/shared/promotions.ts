@@ -1,6 +1,4 @@
-import {
-  Promotion
-} from './promotion';
+import { Promotion } from './promotion';
 
 export const PROMOTIONS: Promotion[] = [
   {

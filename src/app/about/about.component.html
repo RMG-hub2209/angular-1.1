@@ -56,6 +56,15 @@
 
   <div fxFlex>
     <h2>Corporate Leadership</h2>
-    <p>Display the details of the corporate leaders here</p>
+    <div fxFlex>
+        <mat-grid-list cols="1" rowHeight="200px">
+          <mat-grid-tile *ngFor="let leader of leaders" [routerLink]="['/dishdetail', leader.id]">
+            <img height="200px" src="{{leader.image}}" alt="{{leader.name}}">
+            <mat-grid-tile-footer>
+              <h1 matLine>{{leader.name | uppercase}}</h1>
+            </mat-grid-tile-footer>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
   </div>
 </div>
