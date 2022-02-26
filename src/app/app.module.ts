@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider'
 
 
 import { AppComponent } from './app.component';
@@ -68,7 +69,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     MatInputModule,
     MatToolbarModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSliderModule
   ],
   providers: [
     DishService,
