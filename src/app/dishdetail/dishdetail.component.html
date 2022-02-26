@@ -43,9 +43,15 @@
             </p>
         </mat-list-item>
         <mat-list-item *ngIf="this.commentForm.valid">
-          <p matLine>{{ commentForm.value.comment }}</p>
-          <p matLine>{{ commentForm.value.rating }} Stars</p>
-          <p matLine>{{ commentForm.value.author }}</p>
+          <p matLine>
+            <span>{{ commentForm.value.comment }}</span>
+          </p>
+          <p matLine>
+            <span>{{ commentForm.value.rating }} Stars</span>
+          </p>
+          <p matLine>
+            <span>{{ commentForm.value.author }}</span>
+          </p>
         </mat-list-item>
     </mat-list>
   </div>
@@ -58,7 +64,15 @@
           <input matInput formControlName="author" placeholder="Name" type="text" required>
           <mat-error *ngIf="formErrors.author">{{ formErrors.author }}</mat-error>
         </mat-form-field>
-        <mat-slider step="10" tickInterval="2" required></mat-slider>
+        <mat-slider
+            thumbLabel
+            [displayWith]="formatLabel"
+            tickInterval="1"
+            step="1"
+            min="0"
+            max="5"
+            aria-label="units"
+            formControlName="rating"></mat-slider>
         <span>Rate this Dish!</span>
       </p>
       <p>

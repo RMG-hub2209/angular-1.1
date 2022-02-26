@@ -7,7 +7,6 @@ import { switchMap } from 'rxjs/operators';
 import { ControlContainer, FormBuilder, RequiredValidator, FormGroup, Validators } from '@angular/forms';
 import { Comment } from '../shared/comment';
 
-
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
@@ -17,19 +16,31 @@ import { Comment } from '../shared/comment';
 export class DishdetailComponent implements OnInit {
 
   dish!: Dish;
+  dishcopy!: Dish;
   dishIds!: string[];
   prev!: string;
   next!: string;
+  
 
   commentForm!: FormGroup;
-  rate!: 5;
   comment!: Comment;
   @ViewChild('cform') commentFormDirective;
 
   formErrors = {
     'author': '',
+    'rating': 5,
     'comment': ''
   }
+
+    /***** Barra de calificación *****/
+    formatLabel(rate: number) {
+      if (rate >= 1) {
+        return Math.round(rate / 1) + '*';
+      }
+  
+      return rate;
+    }
+    /***** Barra de calificación *****/
   
   validationMessages = {
     'author': {
@@ -57,7 +68,8 @@ export class DishdetailComponent implements OnInit {
       .subscribe((dishIds) => this.dishIds = dishIds);
     this.route.params
       .pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id);
+    });
   }
 
   setPrevNext(dishId: string) {
@@ -73,6 +85,7 @@ export class DishdetailComponent implements OnInit {
   createForm(){
     this.commentForm = this.fb.group({
       author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      rating: 5,
       comment: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]]
     })
 
@@ -105,13 +118,14 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     this.comment = this.commentForm.value;
     this.comment.date = new Date().toISOString();
+    this.dishcopy.comments.push(this.comment);
     console.log(this.comment);
     this.commentForm.reset({
       author: '',
-      rate: '',
+      rating: 5,
       comment: ''
     });
-    this.commentFormDirective.resetForm();
+    // this.commentFormDirective.resetForm();
   }
 
 }
