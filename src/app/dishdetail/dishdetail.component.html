@@ -16,7 +16,7 @@
         <mat-card-actions>
           <button mat-button [routerLink]="['/dishdetail', prev]">
             <span class="fa fa-chevron-left fa-lg"></span>
-          </button> 
+          </button>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
           <button mat-button (click)="goBack()">BACK</button>
@@ -31,32 +31,29 @@
   <div fxFlex="40" *ngIf="dish">
     <h3>Comments</h3>
     <mat-list>
-        <mat-list-item *ngFor="let comment of dish.comments">
-            <p matLine>
-                <span>{{ comment.comment }}</span>
-            </p>
-            <p matLine>
-                <span>{{ comment.rating }} Stars</span>
-            </p>
-            <p matLine>
-                <span>{{ comment.author }} {{ comment.date | date }}</span>
-            </p>
-        </mat-list-item>
-        <mat-list-item *ngIf="this.commentForm.valid">
-          <p matLine>
-            <span>{{ commentForm.value.comment }}</span>
-          </p>
-          <p matLine>
-            <span>{{ commentForm.value.rating }} Stars</span>
-          </p>
-          <p matLine>
-            <span>{{ commentForm.value.author }}</span>
-          </p>
-        </mat-list-item>
+      <mat-list-item *ngFor="let comment of dish.comments">
+        <p matLine>
+          <span>{{ comment.comment }}</span>
+        </p>
+        <p matLine>
+          <span>{{ comment.rating }} Stars</span>
+        </p>
+        <p matLine>
+          <span>{{ comment.author }} {{ comment.date | date }}</span>
+        </p>
+      </mat-list-item>
+      <mat-list-item *ngIf="this.commentForm.valid">
+        <p matLine>
+          <span>{{ commentForm.value.comment }}</span>
+        </p>
+        <p matLine>
+          <span>{{ commentForm.value.rating }} Stars</span>
+        </p>
+        <p matLine>
+          <span>{{ commentForm.value.author }}</span>
+        </p>
+      </mat-list-item>
     </mat-list>
-  </div>
-
-  <div fxFlex>
     <p>{{ commentForm.value | json }} {{ commentForm.status | json }}</p>
     <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
       <p>
@@ -64,31 +61,27 @@
           <input matInput formControlName="author" placeholder="Name" type="text" required>
           <mat-error *ngIf="formErrors.author">{{ formErrors.author }}</mat-error>
         </mat-form-field>
-        <mat-slider
-            thumbLabel
-            [displayWith]="formatLabel"
-            tickInterval="1"
-            step="1"
-            min="0"
-            max="5"
-            aria-label="units"
-            formControlName="rating"></mat-slider>
+      </p>
+      <p>
+        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="0" max="5"
+        aria-label="units" formControlName="rating"></mat-slider>
         <span>Rate this Dish!</span>
       </p>
       <p>
         <mat-form-field>
           <textarea matInput formControlName="comment" placeholder="Your Comments" rows=12></textarea>
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
-        </mat-form-field>
+       </mat-form-field>
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white"
       [disabled]="commentForm.invalid">Submit
-    </button>
+      </button>
     </form>
   </div>
 
   <div fxFlex [hidden]="dish">
-    <mat-spinner></mat-spinner><h4>Loading... Please, Wait</h4>
+    <mat-spinner></mat-spinner>
+    <h4>Loading... Please, Wait</h4>
   </div>
 
 </div>
