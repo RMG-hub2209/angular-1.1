@@ -4,6 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { baseURL } from './shared/baseurl';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -58,6 +62,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     ReactiveFormsModule,
     FlexLayoutModule,
     FontAwesomeModule,
+    HttpClientModule,
     MatProgressSpinnerModule,
     MatListModule,
     MatGridListModule,
@@ -75,7 +80,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]

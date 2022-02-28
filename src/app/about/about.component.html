@@ -65,7 +65,7 @@
     <mat-list *ngIf="leaders">
       <mat-list-item *ngFor="let leader of leaders">
         <div fxFlex="95px">
-          <img src="{{ leader.image }}">
+          <img src="{{ BaseURL + leader.image }}">
         </div>
         <div fxFlex>
           <h1 mat-line>{{ leader.name }}</h1>
