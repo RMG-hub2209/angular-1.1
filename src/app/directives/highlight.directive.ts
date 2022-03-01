@@ -5,6 +5,17 @@ import { Directive, HostListener, ElementRef, Renderer2 } from '@angular/core';
 })
 export class HighlightDirective {
 
-  constructor() { }
+  constructor(private el: ElementRef,
+    private renderer: Renderer2) { }
+
+  @HostListener('mouseenter') onmouseenter() {
+
+  }
+
+  @HostListener('mouseleave') onmouseleave() {
+
+    
+
+  }
 
 }
