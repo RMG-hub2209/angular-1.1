@@ -62,7 +62,7 @@
   </div>
 
   <div fxFlex>
-    <mat-list *ngIf="leaders">
+    <mat-list *ngIf="leaders" [@expand]>
       <mat-list-item *ngFor="let leader of leaders">
         <div fxFlex="95px">
           <img src="{{ BaseURL + leader.image }}">
@@ -71,7 +71,7 @@
           <h1 mat-line>{{ leader.name }}</h1>
           <h3 mat-line>{{ leader.abbr }}</h3>
           <p mat-line>{{ leader.designation }}</p>
-          <p mat-line>{{ leader.description }}</p>
+          <p matLine>{{ leader.description }}</p>
         </div>
       </mat-list-item>
     </mat-list>
